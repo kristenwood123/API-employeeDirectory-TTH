@@ -2,6 +2,7 @@ const modalBtn = document.querySelector('.modal-close')
 const overlay = document.querySelector('.overlay')
 const APIUrl = `https://randomuser.me/api/?results=12&inc=name, picture, email, location, phone, dob &noinfo &nat=US`
 const gridContainer = document.querySelector('.grid-container')
+const input = document.getElementById('search')
 let employees = []
 
 
@@ -18,8 +19,8 @@ fetchData(APIUrl)
   const displayEmployees = data => {
     employees = data;
     let employeeHTML = ''
-    console.log(typeof employees);
-    employees.forEach((employee, index) => {
+    
+    employees.forEach((employee) => {
       let name = employee.name;
       let email = employee.email;
       let city = employee.location.city;
@@ -45,7 +46,6 @@ fetchData(APIUrl)
   function fetchModalImage() {
     const img = card.querySelector('img')
     const p = card.querySelector('p')
-
     // //returns a promise that will be resolved/fulfilled once data is retrived from server and parsed
     // fetchData(`https://randomuser.me/api/?results=12&inc=name, picture, email, location, phone, dob &noinfo &nat=US`)
     //   .then(data => {
@@ -53,14 +53,20 @@ fetchData(APIUrl)
     //   })
   }
 
-modalBtn.addEventListener('click', () => {
-  overlay.classList.add('hidden')
-})
-      //  <div class="card">
-      //     <img class="avatar" src="member-1.jpg" />
-      //     <div class="text-container">
-      //       <h2 class="name">Haleigh Macchiarella</h2>
-      //       <p class="email">dtucker@yakitri.edu</p>
-      //       <p class="address">Chicago</p>
-      //    </div>
-      //   </div>
+// modalBtn.addEventListener('click', () => {
+//   overlay.classList.add('hidden')
+// })
+  let array = []
+const handleSearch = e => {
+  let inputValue = e.target.value.toLowerCase()
+  let names = document.querySelectorAll('.name')
+    for(let i = 0; i < names.length; i++) {
+        let name = names[i]
+          let innerTextName = names[i].innerHTML
+      innerTextName.toLowerCase().includes(inputValue) ?  console.log(name) : name.style.display = 'none' 
+    }
+}
+
+input.addEventListener('keyup', handleSearch)
+
+//if the input value does not equal the innerHTML of names....takee the entire card out

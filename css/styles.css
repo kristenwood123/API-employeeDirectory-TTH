@@ -70,11 +70,17 @@ header h1 {
   background-color: white;
   border: 2px solid var(--light-gray);
   border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
 }
 
 .card-container {
   display: flex;
-  margin: 2em;
+  margin: 1.25em;
+}
+
+.card:hover {
+  transform: scale(1.02);
 }
 
 .card img {
