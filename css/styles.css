@@ -4,8 +4,26 @@
   margin: 0;
 }
 
+:root {
+  --color-background-gray: rgb(248, 246, 246);
+  --dark-gray-text: rgb(78, 78, 78);
+  --light-gray: rgb(231, 231, 231);
+  --light-gray-text: rgb(153, 152, 152);
+  --font-family: "Open Sans", sans-serif;
+}
 body {
   position: relative;
+  background: var(--color-background-gray);
+  margin: 40px;
+}
+
+header h1 {
+  font-family: var(--font-family);
+  text-transform: uppercase;
+  font-size: 14px;
+  color: var(--dark-gray-text);
+  letter-spacing: 1px;
+  margin-bottom: 30px;
 }
 
 .overlay {
@@ -43,4 +61,37 @@ body {
 
 .grid-container {
   display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 20px;
+}
+
+.card {
+  font-family: var(--font-family);
+  background-color: white;
+  border: 2px solid var(--light-gray);
+  border-radius: 8px;
+}
+
+.card-container {
+  display: flex;
+  margin: 2em;
+}
+
+.card img {
+  border-radius: 50%;
+  max-width: 80px;
+  margin-right: 20px;
+}
+
+.text-container .name {
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.text-container .email,
+.city {
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 2px;
+  color: var(--light-gray-text);
 }

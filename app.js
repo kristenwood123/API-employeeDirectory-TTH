@@ -15,10 +15,10 @@ function fetchData(url) {
 
 fetchData(APIUrl)
   
-  
   const displayEmployees = data => {
     employees = data;
     let employeeHTML = ''
+    console.log(typeof employees);
     employees.forEach((employee, index) => {
       let name = employee.name;
       let email = employee.email;
@@ -27,11 +27,13 @@ fetchData(APIUrl)
 
     employeeHTML += `
        <div class="card">
+          <div class="card-container">
           <img class="${name.first} profile" src=${picture.large} />
           <div class="text-container">
             <h2 class="name">${name.first} ${name.last}</h2>
             <p class="email">${email}</p>
-            <p class="address">${city}</p>
+            <p class="city">${city}</p>
+          </div>
          </div>
         </div>`
 
