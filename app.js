@@ -1,4 +1,5 @@
 const modalBtn = document.querySelector('.modal-close')
+const modal= document.querySelector('.modal')
 const overlay = document.querySelector('.overlay')
 const APIUrl = `https://randomuser.me/api/?results=12&inc=name, picture, email, location, phone, dob &noinfo &nat=US`
 const gridContainer = document.querySelector('.grid-container')
@@ -16,73 +17,78 @@ function fetchData(url) {
   fetchData(APIUrl)
     .then(data => displayEmployees(data))
 
-
+//Display Employees
   const displayEmployees = data => {
     employees = data;
     let employeeHTML = ''
     
-    employees.forEach((employee, index) => {
-      let name = employee.name;
-      let email = employee.email;
-      let city = employee.location.city;
-      let picture = employee.picture;
+    // employees.forEach((employee, index) => {
+    //   let name = employee.name;
+    //   let email = employee.email;
+    //   let city = employee.location.city;
+    //   let picture = employee.picture;
 
-    employeeHTML += `
-       <div class="card" index=${index}>
-          <div class="card-container">
-          <img class="${name.first} profile" src=${picture.large} />
-          <div class="text-container">
-            <h2 class="name">${name.first} ${name.last}</h2>
-            <p class="email">${email}</p>
-            <p class="city">${city}</p>
-          </div>
-         </div>
-        </div>`
-      }) 
-      gridContainer.innerHTML = employeeHTML; 
-      handleModal()
+    gridContainer.innerHTML = employees.map((employee, index) => {
+      const {name, email, location, picture} = employee;
+      return 'hello'
+    })
+
+    // employeeHTML += `
+    //    <div class="card" index=${index}>
+    //       <div class="card-container">
+    //       <img class="${name.first} profile" src=${picture.large} />
+    //       <div class="text-container">
+    //         <h2 class="name">${name.first} ${name.last}</h2>
+    //         <p class="email">${email}</p>
+    //         <p class="city">${city}</p>
+    //       </div>
+    //      </div>
+    //     </div>`
+    //   }) 
+    //   gridContainer.innerHTML = employeeHTML; 
+    //   handleModal()
   }
-
+//Modal 
   const displayModal = (index) => {
-    let { picture, name, email, dob, location: { city, street, state, postcode }, phone } = employees[index]
+    let { picture, name, email, dob, location = { city, street, state, postcode }, phone } = employees[index]
+      const person = employees[index]
 
     let modalHTML = '';
     modalHTML += `
-    <div class="modal">
-      <button class="modal-close">X</button>
-        <div class="modal-container">
-        <img src=${picture.large}" alt="${name.first}">
+      <div className="container">
+      <button class='prevBtn btn'><</button>
+        <img src=${picture.large} alt="${name.first}">
+        <button class='nextBtn btn'>></button>
         <div class="text-container">
           <h2 class="name">${name.first} ${name.last}</h2>
           <p class="email">${email}</p>
-          <p class="address">${location.city}</p>
+          <p class="city">${location.city}</p>
           <hr/>
-          <p>${phone}</p>
-          <p class="address">${location.street}, ${location.state} ${location.postcode}</p>
-          // <p>Birthday: </p>
-        </div>
+          <p class='phone'>${phone}</p>
+          <p class="address">${location.street.number} ${location.street.name}, ${location.state} ${location.postcode}</p>
+         <p class='bday'>Birthday: ${dob.date} </p>
       </div>
     </div>`
-
-    overlay.innerHTML = modalHTML;
-    modalBtn.addEventListener('click', () => {
-    overlay.classList.add('hidden')
-  })
+    
+    overlay.classList.remove("hidden");
+    modal.insertAdjacentHTML('beforeend', modalHTML);
 }
 
-
-  const handleModal = () => {
+const handleModal = () => {
     let cards = document.querySelectorAll('.card')
     cards.forEach(card => {
     card.addEventListener('click', e => {
       const employee = e.target.closest('.card');
-      console.log(employee);
       const index = employee.getAttribute('index')
 
       displayModal(index)
     })
   })
-  }
+}
+
+// Modal Buttons 
+
+
 // Search function
 const handleSearch = e => {
   let inputValue = e.target.value.toLowerCase()
@@ -98,6 +104,13 @@ const handleSearch = e => {
    }
 }
 
+
 input.addEventListener('keyup', handleSearch)
+ 
+modalBtn.addEventListener("click", () => {
+  overlay.classList.add("hidden");
+});
+
+
 
 

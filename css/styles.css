@@ -14,7 +14,6 @@
 body {
   position: relative;
   background: var(--color-background-gray);
-  margin: 40px;
 }
 
 header h1 {
@@ -41,7 +40,7 @@ header h1 {
   position: relative;
   text-align: center;
   background: #fff;
-  border: 1px solid #778;
+  border: 2px solid #778;
   border-radius: 5px;
   padding: 30px 20px;
 }
@@ -63,15 +62,18 @@ header h1 {
   display: grid;
   grid-template-columns: repeat(3, auto);
   grid-gap: 20px;
+  margin: 40px;
 }
 
-.card {
+.card,
+.modal {
   font-family: var(--font-family);
   background-color: white;
   border: 2px solid var(--light-gray);
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease-out;
+  font-weight: 200;
+  font-size: 12px;
 }
 
 .card-container {
@@ -83,7 +85,7 @@ header h1 {
   transform: scale(1.02);
 }
 
-.card img {
+img {
   border-radius: 50%;
   max-width: 80px;
   margin-right: 20px;
@@ -100,4 +102,68 @@ header h1 {
   font-weight: 400;
   margin-bottom: 2px;
   color: var(--light-gray-text);
+}
+
+.modal .name {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.modal .text-container p {
+  color: rgb(172, 168, 168);
+  font-size: 12px;
+}
+
+.modal .text-container .city,
+.email {
+  margin-top: 10px;
+}
+
+.modal .text-container .city {
+  margin-bottom: 30px;
+}
+
+hr {
+  margin: 0 auto;
+  border: 1px solid var(--light-gray);
+  width: 80%;
+  margin-bottom: 30px;
+}
+
+.modal .text-container .address,
+.bday {
+  margin-top: 10px;
+}
+
+.container {
+  position: relative;
+}
+
+.btn {
+  background: rgb(184, 180, 180);
+  border-radius: 10px;
+  padding-left: 6px;
+  padding-right: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 25px;
+  color: white;
+  position: absolute;
+  top: 150px;
+}
+
+.prevBtn {
+  left: 30px;
+}
+
+.nextBtn {
+  right: 30px;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+.modal img {
+  margin-right: 0;
 }
