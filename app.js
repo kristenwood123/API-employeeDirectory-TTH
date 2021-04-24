@@ -56,17 +56,18 @@ fetchData(APIUrl)
 // modalBtn.addEventListener('click', () => {
 //   overlay.classList.add('hidden')
 // })
-  let array = []
+
+ 
 const handleSearch = e => {
   let inputValue = e.target.value.toLowerCase()
-  let names = document.querySelectorAll('.name')
-    for(let i = 0; i < names.length; i++) {
-        let name = names[i]
-          let innerTextName = names[i].innerHTML
-      innerTextName.toLowerCase().includes(inputValue) ?  console.log(name) : name.style.display = 'none' 
-    }
+   let names = document.querySelectorAll('.name')
+   for(let i = 0; i < names.length; i++) {
+     let person = names[i]
+     let name = person.innerHTML.toLowerCase();
+     name.includes(inputValue) ? person.style.display = 'inline' : person.parentNode.parentNode.parentNode.style.display = 'none'
+   }
+   
 }
 
 input.addEventListener('keyup', handleSearch)
 
-//if the input value does not equal the innerHTML of names....takee the entire card out
