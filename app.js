@@ -43,7 +43,7 @@ function fetchData(url) {
 
     let modalHTML = '';
     modalHTML += `
-      <div className="container">
+      <div class="container">
       <button class='prevBtn btn'><</button>
         <img src=${picture.large} alt="${name.first}">
         <button class='nextBtn btn'>></button>
@@ -68,6 +68,11 @@ gridContainer.addEventListener('click', e => {
     const index = card.getAttribute("index");
     displayModal(index);
   }
+  modalBtn.addEventListener("click", () => {
+  overlay.classList.add("hidden");
+    let container = document.querySelector('.container')
+    container.remove()
+});
 })
 
 // Modal Buttons 
@@ -91,7 +96,5 @@ const handleSearch = e => {
 
 input.addEventListener('keyup', handleSearch)
  
-modalBtn.addEventListener("click", () => {
-  overlay.classList.add("hidden");
-});
+
 
