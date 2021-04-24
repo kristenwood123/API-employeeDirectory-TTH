@@ -13,45 +13,33 @@ function fetchData(url) {
     .then(res => res.results)
     .catch(err => console.log(err))
 }
-
   fetchData(APIUrl)
     .then(data => displayEmployees(data))
 
 //Display Employees
   const displayEmployees = data => {
     employees = data;
-    let employeeHTML = ''
-    
-    // employees.forEach((employee, index) => {
-    //   let name = employee.name;
-    //   let email = employee.email;
-    //   let city = employee.location.city;
-    //   let picture = employee.picture;
-
+    //map over the array of employees and place in gridContainer
     gridContainer.innerHTML = employees.map((employee, index) => {
+      //destructure properties in array
       const {name, email, location, picture} = employee;
-      return 'hello'
+      return `<div class="card" index=${index}>
+          <div class="card-container">
+          <img class="${name.first} profile" src=${picture.large} />
+          <div class="text-container">
+            <h2 class="name">${name.first} ${name.last}</h2>
+            <p class="email">${email}</p>
+            <p class="city">${location.city}</p>
+          </div>
+         </div>
+        </div>`
     })
-
-    // employeeHTML += `
-    //    <div class="card" index=${index}>
-    //       <div class="card-container">
-    //       <img class="${name.first} profile" src=${picture.large} />
-    //       <div class="text-container">
-    //         <h2 class="name">${name.first} ${name.last}</h2>
-    //         <p class="email">${email}</p>
-    //         <p class="city">${city}</p>
-    //       </div>
-    //      </div>
-    //     </div>`
-    //   }) 
-    //   gridContainer.innerHTML = employeeHTML; 
-    //   handleModal()
+    .join('')
   }
+
 //Modal 
   const displayModal = (index) => {
-    let { picture, name, email, dob, location = { city, street, state, postcode }, phone } = employees[index]
-      const person = employees[index]
+      const { picture, name, email, dob, location = { city, street, state, postcode }, phone } = employees[index]
 
     let modalHTML = '';
     modalHTML += `
@@ -74,17 +62,13 @@ function fetchData(url) {
     modal.insertAdjacentHTML('beforeend', modalHTML);
 }
 
-const handleModal = () => {
-    let cards = document.querySelectorAll('.card')
-    cards.forEach(card => {
-    card.addEventListener('click', e => {
-      const employee = e.target.closest('.card');
-      const index = employee.getAttribute('index')
-
-      displayModal(index)
-    })
-  })
-}
+gridContainer.addEventListener('click', e => {
+  if (e.target !== gridContainer) {
+    const card = e.target.closest(".card");
+    const index = card.getAttribute("index");
+    displayModal(index);
+  }
+})
 
 // Modal Buttons 
 
@@ -110,7 +94,4 @@ input.addEventListener('keyup', handleSearch)
 modalBtn.addEventListener("click", () => {
   overlay.classList.add("hidden");
 });
-
-
-
 
