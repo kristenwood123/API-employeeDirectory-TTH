@@ -62,12 +62,13 @@ function fetchData(url) {
     </div>`
     
     overlay.classList.remove("hidden");
-    modal.insertAdjacentHTML('beforeend', modalHTML);
-  
-}
-//Modal Buttons
+    modal.insertAdjacentHTML('beforeend', modalHTML); 
+
   nextBtn.addEventListener('click', () => handleNextBtn(index));
   prevBtn.addEventListener('click', () => handlePrevBtn(index))
+}
+//Modal Buttons
+ 
 
 const handleNextBtn = (currentIndex) => {
   let newIndex = currentIndex + 1;
@@ -79,14 +80,12 @@ const handlePrevBtn = (currentIndex) => {
   return displayModal(newIndex)
 }
 
-
 gridContainer.addEventListener('click', e => {
   if (e.target !== gridContainer) {
     const card = e.target.closest(".card");
     const string = card.getAttribute("index")
     const index = parseInt(string)
-    displayModal(index);
-    
+    displayModal(index); 
   }
 
 modalBtn.addEventListener("click", () => {
