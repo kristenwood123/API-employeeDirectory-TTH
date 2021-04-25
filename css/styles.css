@@ -22,7 +22,24 @@ header h1 {
   font-size: 14px;
   color: var(--dark-gray-text);
   letter-spacing: 1px;
-  margin-bottom: 30px;
+  margin: 30px 40px;
+}
+
+input {
+  width: 400px;
+  border: 2px solid rgb(207, 207, 207);
+  border-radius: 6px;
+  height: 40px;
+  padding-left: 10px;
+  margin-left: 40px;
+}
+
+input::placeholder {
+  font-size: 16px;
+}
+
+input:focus {
+  outline-color: rgb(124, 176, 236);
 }
 
 .overlay {
