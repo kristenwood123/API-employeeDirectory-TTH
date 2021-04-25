@@ -4,6 +4,11 @@ const overlay = document.querySelector('.overlay')
 const APIUrl = `https://randomuser.me/api/?results=12&inc=name, picture, email, location, phone, dob &noinfo &nat=US`
 const gridContainer = document.querySelector('.grid-container')
 const input = document.getElementById('search')
+const con = document.querySelector('.card-container')
+const nextBtn = document.querySelector('.next-Btn')
+const prevBtn = document.querySelector('.prev-Btn')
+
+
 let employees = []
 
 
@@ -44,9 +49,7 @@ function fetchData(url) {
     let modalHTML = '';
     modalHTML += `
       <div class="container">
-      <button class='prevBtn btn'><</button>
         <img src=${picture.large} alt="${name.first}">
-        <button class='nextBtn btn'>></button>
         <div class="text-container">
           <h2 class="name">${name.first} ${name.last}</h2>
           <p class="email">${email}</p>
@@ -60,22 +63,39 @@ function fetchData(url) {
     
     overlay.classList.remove("hidden");
     modal.insertAdjacentHTML('beforeend', modalHTML);
+  
 }
+//Modal Buttons
+  nextBtn.addEventListener('click', () => handleNextBtn(index));
+  prevBtn.addEventListener('click', () => handlePrevBtn(index))
+
+const handleNextBtn = (currentIndex) => {
+  let newIndex = currentIndex + 1;
+  return displayModal(newIndex)
+}
+
+const handlePrevBtn = (currentIndex) => {
+  let newIndex = currentIndex - 1;
+  return displayModal(newIndex)
+}
+
 
 gridContainer.addEventListener('click', e => {
   if (e.target !== gridContainer) {
     const card = e.target.closest(".card");
-    const index = card.getAttribute("index");
+    const string = card.getAttribute("index")
+    const index = parseInt(string)
     displayModal(index);
+    
   }
-  modalBtn.addEventListener("click", () => {
+
+modalBtn.addEventListener("click", () => {
   overlay.classList.add("hidden");
     let container = document.querySelector('.container')
-    container.remove()
-});
+    container.remove()   
+  });
 })
 
-// Modal Buttons 
 
 
 // Search function
@@ -95,6 +115,8 @@ const handleSearch = e => {
 
 
 input.addEventListener('keyup', handleSearch)
+
+   
  
 
 
