@@ -1,5 +1,5 @@
 const modalBtn = document.querySelector('.modal-close')
-const modal= document.querySelector('.modal')
+const modal = document.querySelector('#modal-container')
 const overlay = document.querySelector('.overlay')
 const APIUrl = `https://randomuser.me/api/?results=12&inc=name, picture, email, location, phone, dob &noinfo &nat=US`
 const gridContainer = document.querySelector('.grid-container')
@@ -64,14 +64,13 @@ function fetchData(url) {
     overlay.classList.remove("hidden");
     modal.innerHTML = modalHTML; 
 
-      nextBtn.addEventListener('click', () => handleNextBtn(index));
-  prevBtn.addEventListener('click', () => handlePrevBtn(index))
- 
+    nextBtn.addEventListener('click', () => handleNextBtn(index));
+    prevBtn.addEventListener('click', () => handlePrevBtn(index))
 }
 //Modal Buttons
 
 
-  const handleNextBtn = (currentIndex) => {
+const handleNextBtn = (currentIndex) => {
     let newIndex = currentIndex + 1;
     return displayModal(newIndex)
 }
