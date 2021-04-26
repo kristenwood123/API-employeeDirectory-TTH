@@ -62,17 +62,18 @@ function fetchData(url) {
     </div>`
     
     overlay.classList.remove("hidden");
-    modal.insertAdjacentHTML('beforeend', modalHTML); 
+    modal.innerHTML = modalHTML; 
 
-  nextBtn.addEventListener('click', () => handleNextBtn(index));
+      nextBtn.addEventListener('click', () => handleNextBtn(index));
   prevBtn.addEventListener('click', () => handlePrevBtn(index))
+ 
 }
 //Modal Buttons
- 
 
-const handleNextBtn = (currentIndex) => {
-  let newIndex = currentIndex + 1;
-  return displayModal(newIndex)
+
+  const handleNextBtn = (currentIndex) => {
+    let newIndex = currentIndex + 1;
+    return displayModal(newIndex)
 }
 
 const handlePrevBtn = (currentIndex) => {

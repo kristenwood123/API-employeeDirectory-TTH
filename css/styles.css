@@ -64,11 +64,12 @@ input:focus {
 
 .modal-close {
   position: absolute;
-  top: 5px;
-  right: 15px;
+  top: 210px;
+  right: 490px;
   background: transparent;
   border: none;
   cursor: pointer;
+  z-index: 99;
 }
 
 .hidden {
