@@ -60,6 +60,7 @@ input:focus {
   border: 2px solid #778;
   border-radius: 5px;
   padding: 30px 20px;
+  z-index: 99;
 }
 
 .modal-close {

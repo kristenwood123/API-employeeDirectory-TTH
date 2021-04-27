@@ -46,6 +46,16 @@ function fetchData(url) {
   const displayModal = (index) => {
       const { picture, name, email, dob, location = { city, street, state, postcode }, phone } = employees[index]
 
+    let date = new Date(dob.date);
+    let currDate = date.getDate()
+    currDate = currDate > 9 ? currDate : "0" + currDate;
+
+    let currMonth = date.getMonth();
+    currMonth = currMonth > 9 ? currMonth : "0" + currMonth;
+
+    let currYear = date.getFullYear()
+    let formattedDate = `${currMonth}/${currDate}/${currYear}`
+
     let modalHTML = '';
     modalHTML += `
       <div class="container">
@@ -57,7 +67,7 @@ function fetchData(url) {
           <hr/>
           <p class='phone'>${phone}</p>
           <p class="address">${location.street.number} ${location.street.name}, ${location.state} ${location.postcode}</p>
-         <p class='bday'>Birthday: ${dob.date} </p>
+         <p class='bday'>Birthday: ${formattedDate} </p>
       </div>
     </div>`
     
