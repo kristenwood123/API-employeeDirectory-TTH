@@ -4,10 +4,9 @@ const overlay = document.querySelector('.overlay')
 const APIUrl = `https://randomuser.me/api/?results=12&inc=name, picture, email, location, phone, dob &noinfo &nat=US`
 const gridContainer = document.querySelector('.grid-container')
 const input = document.getElementById('search')
-const con = document.querySelector('.card-container')
+let container;
 const nextBtn = document.querySelector('.next-Btn')
 const prevBtn = document.querySelector('.prev-Btn')
-
 
 let employees = []
 
@@ -46,8 +45,10 @@ function fetchData(url) {
   const displayModal = (index) => {
       const { picture, name, email, dob, location = { city, street, state, postcode }, phone } = employees[index]
 
+    //Formatting Date
     let date = new Date(dob.date);
     let currDate = date.getDate()
+    //Add zero to the front of the date if there is no zero
     currDate = currDate > 9 ? currDate : "0" + currDate;
 
     let currMonth = date.getMonth();
@@ -100,8 +101,8 @@ gridContainer.addEventListener('click', e => {
 
 modalBtn.addEventListener("click", () => {
   overlay.classList.add("hidden");
-    let container = document.querySelector('.container')
-    container.remove()   
+    container = document.querySelector('.modal-container')
+    // container.remove()   
   });
 })
 
