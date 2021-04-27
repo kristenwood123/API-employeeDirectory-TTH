@@ -22,7 +22,7 @@ header h1 {
   font-size: 14px;
   color: var(--dark-gray-text);
   letter-spacing: 1px;
-  margin: 30px 40px;
+  padding: 30px 40px;
 }
 
 input {
@@ -49,6 +49,7 @@ input:focus {
   right: 0;
   bottom: 0;
   background: rgba(100, 100, 100, 0.4);
+  height: 200%;
 }
 
 .modal {
